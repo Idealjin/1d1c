@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+	<entry key = "selectAllOrder">
+	     SELECT
+	      	    A.ORDER_CODE
+	    	  , A.ORDER_DATE
+	    	  , A.ORDER_TIME
+	    	  , A.TOTAL_ORDER_PRICE
+	       FROM TBL_ORDER A
+	 </entry>
+	 <entry key ="selectOrderMenuBy">
+	     SELECT
+	     	    B.MENU_CODE
+	     	  , B.MENU_NAME
+	     	  , B.MENU_PRICE
+	       FROM TBL_MENU B
+	       JOIN TBL_ORDER_MENU A ON (B.MENU_CODE = A.MENU_CODE)
+	      WHERE A.ORDER_CODE = ?
+	 </entry>
+	 
+	 
+	 
+	 
+	
+</properties>
