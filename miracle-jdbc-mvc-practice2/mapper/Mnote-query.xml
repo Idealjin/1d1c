@@ -37,7 +37,11 @@
 	       FROM TBL_MNOTE A
 	      WHERE A.NO = ?
 	 </entry>
-	 
+	 <entry key = "delNote">
+	     DELETE
+	       FROM TBL_MNOTE A
+	      WHERE A.NO = ? 
+	 </entry>
 	 
 	
 </properties>

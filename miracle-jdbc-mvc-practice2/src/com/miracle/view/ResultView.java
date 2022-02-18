@@ -18,5 +18,12 @@ public class ResultView {
 		System.out.println("======================== 노트 수정 실패!! ========================");
 	}
 	
+	public void deleteSuccess() {
+		System.out.println("======================== 노트 삭제 성공!! ========================");
+	}
+	
+	public void deletefailed() {
+		System.out.println("======================== 노트 삭제 실패!! ========================");
+	}
 	
 }

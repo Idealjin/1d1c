@@ -20,8 +20,8 @@ public class MnoteMenu {
 		System.out.println(" 1. 노트 작성");
 		System.out.println(" 2. 노트 목록 조회");
 		System.out.println(" 3. 노트 열어서 수정하기");
-		//4. 노트 삭제하기 추가 예정
-		System.out.println(" 4. 끝내기");
+		System.out.println(" 4. 노트 삭제하기");
+		System.out.println(" 5. 끝내기");
 		System.out.print("번호를 입력하세요 . : ");
 		int sel = sc.nextInt();
 		
@@ -35,7 +35,10 @@ public class MnoteMenu {
 		case 3 :
 			noteCon.updateNote();
 			break;
-		case 4 : 
+		case 4 :
+			noteCon.delNote();
+			break;
+		case 5 : 
 			System.out.println("프로그램을 종료합니다.");
 			break menu;
 		}

@@ -72,6 +72,24 @@ public class MnoteService {
 		
 	}
 
+	public int delNote(int selNo) {
+		
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = mnoteDAO.delNote(con, selNo);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		return result;
+		
+	}
+
 	
 	
 	

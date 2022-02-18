@@ -176,4 +176,26 @@ public class MnoteDAO {
 		
 	}
 
+	public int delNote(Connection con, int selNo) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("delNote");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, selNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

@@ -90,6 +90,24 @@ public class MnoteController {
 		}
 	}
 
+	public void delNote() {
+		
+		MnoteDTO mnoteDTO = new MnoteDTO();
+		
+		System.out.print("삭제할 노트 번호를 입력해주세요 : ");
+		int selNo = sc.nextInt();
+		
+		int result = mnoteService.delNote(selNo);
+	
+		
+		if(result > 0) {
+			resultView.deleteSuccess();
+		} else {
+			resultView.deletefailed();
+		}
+		
+	}
+
 	
 	
 	
