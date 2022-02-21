@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ohgiraffers.section01.xml.DynamicSqlMapper">
+  
+  <resultMap type="com.ohgiraffers.common.MenuDTO" id="menuResultMap">
+  	<id property="code" column="MENU_CODE"/>
+  	<result property="name" column="MENU_NAME"/>
+  	<result property="price" column="MENU_PRICE"/>
+  	<result property="categoryCode" column="CATEGORY_PRICE"/>
+  	<result property="orderableStatus" column="ORDERABLE_STATUS"/>
+  
+  </resultMap>
+  
+  
+  <select id="selectMenuByPrice" parameterType="hashMap" resultMap="menuResultMap">
+      SELECT
+      	     A.MENU_CODE
+      	   , A.MENU_NAME
+      	   , A.MENU_PRICE
+      	   , A.CATEGORY_CODE
+      	   , A.ORDERABLE_STATUS
+      	FROM TBL_MENU A
+       WHERE A.ORDERABLE_STATUS = 'Y'
+       <!-- lt : < , gt : > , lte : <=, gte >= 
+         lowthen  greatthen  lowthenequals greatthenequals
+        -->
+       <if test="price gte 0 and price lte 10000">
+       <!-- <![CDATA[ 이 사이에 들어가는 >, <를 비교연산자로 인식하게 해준다. ]]> -->
+         <![CDATA[
+         AND A.MENU_PRICE < #{ price }
+         ]]>
+       </if>
+       <if test="price gt 10000 and price lte 20000">
+         AND A.MENU_PRICE BETWEEN 10000 AND #{ price }
+       </if>
+       <if test="price gt 20000 and price lte 30000">
+         AND A.MENU_PRICE BETWEEN 20000 AND #{ price }
+       </if>
+       <if test="price gt 30000">
+         AND A.MENU_PRICE BETWEEN 30000 AND #{ price }
+       </if>
+       ORDER BY A.MENU_CODE
+  </select>
+  
+  <select id="selectMenuByName" parameterType="hashMap" resultMap="menuResultMap">
+      SELECT
+      	     A.MENU_CODE
+      	   , A.MENU_NAME
+      	   , A.MENU_PRICE
+      	   , A.CATEGORY_CODE
+      	   , A.ORDERABLE_STATUS
+      	FROM TBL_MENU A
+       WHERE A.ORDERABLE_STATUS = 'Y'
+       	 AND A.MENU_NAME LIKE '%'||#{name}||'%'
+       	  OR B.CATEGORY_NAME LIKE '%'||#{name}||'%'
+       ORDER BY A.MENU_CODE
+  </select>
+  
+  
+</mapper>
