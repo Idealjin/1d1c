@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangjin.model.dao.Note_sangjin_mapper">
+ <insert id="newNote" parameterType="com.sangjin.model.dto.MnoteDTO">
+ 	   INSERT
+	     INTO TBL_MNOTE A
+	   (
+	     A.NO
+	   , A.TITLE
+	   , A.CONTENT
+	   , A.CREATE_DATE
+	   )
+	   VALUES
+	   (
+	   	 SEQ_NO.NEXTVAL
+	   , #{ title }
+	   , #{ content }
+	   , #{ date }
+	   )
+ </insert>
+ <insert id="newNoteRecord" parameterType="com.sangjin.model.dto.RecordDTO">
+       INSERT
+	     INTO TBL_RECORD A
+	   (
+	     A.NO
+	   , A.AUTHOR
+	   , A.NOTE_DATE
+	   , A.STATE
+	   )
+	   VALUES
+	   (
+	     (SELECT MAX(B.NO)
+	        FROM TBL_MNOTE B)
+	   , #{author}
+	   , #{noteDate}
+	   , #{state}
+	   )
+ </insert>
+ <update id="updateNote" parameterType="com.sangjin.model.dto.MnoteDTO" >
+  	   UPDATE
+              TBL_MNOTE A
+          SET A.TITLE = #{ title }
+            , A.CONTENT = #{ content }
+        WHERE A.NO = #{memoNo }
+ </update>
+ <update id="updateRecord" parameterType="com.sangjin.model.dto.RecordDTO">
+ 	   UPDATE
+              TBL_RECORD A
+          SET A.NOTE_DATE = #{noteDate}
+            , A.STATE = #{state}
+        WHERE A.NO = #{no} 
+ </update>
+ <delete id="delNote" parameterType="com.sangjin.model.dto.MnoteDTO">
+ 	     DELETE
+	       FROM TBL_MNOTE A
+	      WHERE A.NO = #{memoNo}
+ </delete>
+  <delete id="delNoteRecord" parameterType="com.sangjin.model.dto.RecordDTO">
+ 	   UPDATE
+              TBL_RECORD A
+          SET A.NOTE_DATE = #{noteDate}
+            , A.STATE = #{state}
+        WHERE A.NO = #{no}
+ </delete>
+</mapper>
