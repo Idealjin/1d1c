@@ -1,6 +1,8 @@
 package com.sangjin.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.sangjin.model.dto.MnoteDTO;
@@ -33,9 +35,12 @@ public class MnoteController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
 		String date = dateFormat.format(mnoteTime);
 	
+	
+	
+		mnoteDTO.setAuthor(author);
 		mnoteDTO.setTitle(title);
 		mnoteDTO.setContent(content);
-		mnoteDTO.setDate(date);
+		mnoteDTO.setCreateDate(date);
 		
 	
 		recordDTO.setAuthor(author);
@@ -55,15 +60,12 @@ public class MnoteController {
 
 	public void updateNote() {
 		
-//		selNote();
-		
 		MnoteDTO mnoteDTO = new MnoteDTO();
 		RecordDTO recordDTO = new RecordDTO();
 		
 		System.out.print("수정할 노트 번호를 입력해주세요 : ");
 		int selNo = sc.nextInt();
 		
-//		mnoteService.selNoteNo(selNo);
 		mnoteDTO.setMemoNo(selNo);
 		recordDTO.setNo(selNo);
 		
@@ -84,6 +86,7 @@ public class MnoteController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
 		String date = dateFormat.format(mnoteTime);
 		
+		mnoteDTO.setmodifyDate(date);
 		recordDTO.setState("U");
 		recordDTO.setNoteDate(date);
 		
@@ -126,13 +129,14 @@ public class MnoteController {
 			resultView.deletefailed();
 		}
 	}
-//	public void selNote() {
-//	
-//	List<MnoteDTO> mnoteDTO = new ArrayList<>();
-//	
-//	mnoteDTO = mnoteService.selNote();
-//
-//	
-//}
-//
+	
+	public void selNote() {
+	
+	List<MnoteDTO> mnoteDTO = new ArrayList<>();
+	
+	mnoteDTO = mnoteService.selNote();
+
+	
+}
+
 }

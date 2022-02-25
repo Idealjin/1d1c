@@ -1,5 +1,7 @@
 package com.sangjin.model.dao;
 
+import java.util.List;
+
 import com.sangjin.model.dto.MnoteDTO;
 import com.sangjin.model.dto.RecordDTO;
 
@@ -16,5 +18,7 @@ public interface Note_sangjin_mapper {
 	int delNote(MnoteDTO mnoteDTO);
 
 	int delNoteRecord(RecordDTO recordDTO);
+
+	List<MnoteDTO> selNote();
 
 }

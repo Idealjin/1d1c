@@ -7,6 +7,7 @@
 	   (
 	     A.NO
 	   , A.TITLE
+	   , A.AUTHOR
 	   , A.CONTENT
 	   , A.CREATE_DATE
 	   )
@@ -14,8 +15,9 @@
 	   (
 	   	 SEQ_NO.NEXTVAL
 	   , #{ title }
+	   , #{ author }
 	   , #{ content }
-	   , #{ date }
+	   , #{ createDate }
 	   )
  </insert>
  <insert id="newNoteRecord" parameterType="com.sangjin.model.dto.RecordDTO">
@@ -41,6 +43,7 @@
               TBL_MNOTE A
           SET A.TITLE = #{ title }
             , A.CONTENT = #{ content }
+            , A.MODIFY_DATE = #{ modifyDate }
         WHERE A.NO = #{memoNo }
  </update>
  <update id="updateRecord" parameterType="com.sangjin.model.dto.RecordDTO">
@@ -62,4 +65,22 @@
             , A.STATE = #{state}
         WHERE A.NO = #{no}
  </delete>
+ 
+  <resultMap id="mnoteResultMap" type="com.sangjin.model.dto.MnoteDTO" autoMapping="false">
+  	<id property="memoNo" column="NO"/>
+  	<result property="title" column="TITLE"/>
+  	<result property="author" column="AUTHOR"/>
+  	<result property="content" column="CONTENT"/>
+  	<result property="createDate" column="CREATE_DATE"/>
+  	<result property="modifyDate" column="MODIFY_DATE"/>
+  	<result property="delYn" column="NOTE_STATUS"/>
+  </resultMap>
+ 
+ 
+ <select id="selNote" parameterType="com.sangjin.model.dto.MnoteDTO" resultMap="mnoteResultMap">
+ 	     SELECT
+	     	    *
+	       FROM TBL_MNOTE A
+	      ORDER BY 1 
+ </select>
 </mapper>

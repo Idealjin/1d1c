@@ -8,6 +8,9 @@ import com.sangjin.model.dto.RecordDTO;
 
 import static com.sangjin.common.Template.getSqlSession;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MnoteService {
 	
 	private Note_sangjin_mapper mapper;
@@ -103,6 +106,18 @@ public class MnoteService {
 		}
 		
 		return result;
+	}
+
+	public List<MnoteDTO> selNote() {
+		
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(Note_sangjin_mapper.class);
+		
+		List<MnoteDTO> menuList = new ArrayList<>();
+		
+		menuList = mapper.selNote();
+		
+		return menuList;
 	}
 
 }

@@ -4,21 +4,25 @@ public class MnoteDTO {
 
 	private int memoNo;
 	private String title;
+	private String author;
 	private String content;
-	private String date;
+	private String createDate;
+	private String modifyDate;
 	private boolean delYn;
 	
 	public MnoteDTO() {
 		super();
-		
 	}
 
-	public MnoteDTO(int memoNo, String title, String content, String date, boolean delYn) {
+	public MnoteDTO(int memoNo, String title, String author, String content, String createDate, String modifyDate,
+			boolean delYn) {
 		super();
 		this.memoNo = memoNo;
 		this.title = title;
+		this.author = author;
 		this.content = content;
-		this.date = date;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
 		this.delYn = delYn;
 	}
 
@@ -38,6 +42,14 @@ public class MnoteDTO {
 		this.title = title;
 	}
 
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -46,12 +58,20 @@ public class MnoteDTO {
 		this.content = content;
 	}
 
-	public String getDate() {
-		return date;
+	public String getCreateDate() {
+		return createDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setmodifyDate(String modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	public boolean isDelYn() {
@@ -64,9 +84,10 @@ public class MnoteDTO {
 
 	@Override
 	public String toString() {
-		return "MnoteDTO [memoNo=" + memoNo + ", title=" + title + ", content=" + content + ", date=" + date
-				+ ", delYn=" + delYn + "]";
+		return "MnoteDTO [memoNo=" + memoNo + ", title=" + title + ", author=" + author + ", content=" + content
+				+ ", createDate=" + createDate + ", modifyDate=" + modifyDate + ", delYn=" + delYn + "]";
 	}
-
+	
+	
 	
 }

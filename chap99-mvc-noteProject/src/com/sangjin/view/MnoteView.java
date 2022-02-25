@@ -27,13 +27,15 @@ public class MnoteView {
 				noteCon.newNote();
 				break;
 			case 2 :
+				noteCon.selNote();
 				noteCon.updateNote();
 				break;
 			case 3 :
+				noteCon.selNote();
 				noteCon.delNote();
 				break;
 			case 4 :
-//				noteCon.selNote();
+				noteCon.selNote();
 				break;
 			case 5 : 
 				System.out.println("프로그램을 종료합니다.");
