@@ -33,5 +33,47 @@
   		   AND A.EMP_ID = #{ empId }
   	</select>
    
+   <select id="selectAllEmpList" resultMap="employeeResultMap">
+  		SELECT
+  		       A.EMP_ID
+  		     , A.EMP_NAME
+  		     , A.EMAIL
+  		     , A.EMP_NO
+  		     , A.PHONE
+  		     , A.DEPT_CODE
+  		     , A.JOB_CODE
+  		     , A.SAL_LEVEL
+  		     , A.SALARY
+  		     , A.BONUS
+  		     , A.MANAGER_ID
+  		     , A.HIRE_DATE
+  		     , A.ENT_DATE
+  		     , A.ENT_YN
+  		  FROM EMPLOYEE A
+  		 WHERE A.ENT_YN = 'N'
+  	</select>
+   
+   <insert id="insertEmp" parameterType="com.ohgiraffers.mvc.employee.model.dto.EmployeeDTO">
+  		INSERT
+          INTO EMPLOYEE A
+        (
+          A.EMP_ID, A.EMP_NAME, A.EMP_NO, A.EMAIL, A.PHONE
+        , A.DEPT_CODE, A.JOB_CODE, A.SAL_LEVEL, A.SALARY, A.BONUS
+        , A.MANAGER_ID, A.HIRE_DATE, A.ENT_DATE, A.ENT_YN
+		)
+		VALUES
+		(
+		  SEQ_EMPID.NEXTVAL, #{ empName }, #{ empNo }, #{ email }, #{ phone }
+		, #{ deptCode }, #{ jobCode }, #{ salLevel }, #{ salary }, #{ bonus }
+		, #{ managerId }, #{ hireDate }, NULL, DEFAULT
+		)
+  	</insert>
+   <delete id="deleteEmp" parameterType="com.ohgiraffers.mvc.employee.model.dto.EmployeeDTO">
+   DELETE
+     FROM EMPLOYEE
+    WHERE EMP_ID = #{ empId }
+   </delete>
+   
+   
    
   </mapper>
