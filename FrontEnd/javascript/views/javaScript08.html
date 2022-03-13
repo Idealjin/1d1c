@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .area1 {
+            border : 1px solid black;
+            height : 200px;
+        }
+        .area2 {
+            border:1px solid black;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>데이터 형변환</h1>
+    <h3>문자열과 숫자의 '+'연산</h3>
+    <p>문자열 + 숫자 = 문자열이 된다.<br>
+       숫자 + 숫자 + 문자열 = 숫자가 먼저 계산이되고 뒤의 문자열과 합쳐진다.
+    </p>
+    <button onclick="testPlus();">문자열과 숫자의 '+'연산</button>
+    <br><br>
+    <div id="area1" class="area1"></div>
+    <script>
+        function testPlus(){
+            let area1 = document.getElementById("area1");
+
+            let test1 = 7 + 7;
+            area1.innerHTML += '7 + 7 = ' + test1 + "<br>";
+
+            let test2 = 7 + "7";
+            area1.innerHTML += '7 + "7" = ' + test2 + "<br>";
+
+            let test3 = "7" + 7;
+            area1.innerHTML += '"7" + 7 = ' + test3 + "<br>";
+
+            let test4 = "7" + "7";
+            area1.innerHTML += '"7" + "7" = ' + test4 + "<br>";
+
+            let test5 = 7 + 7 + "7";
+            area1.innerHTML += '7 + 7 + "7" = ' + test5 + "<br>";
+
+            let test6 = 7 + "7" + 7;
+            area1.innerHTML += '7 + "7" + 7 = ' + test6 + "<br>";
+
+            let test7 = "7" + 7 + 7;
+            area1.innerHTML += '"7" + 7 + 7 = ' + test7 + "<br>";
+
+            let test8 = "7" + (7 + 7);
+            area1.innerHTML += '"7" + (7 + 7) = ' + test8 + "<br>";
+        }
+
+    </script>
+
+    <hr>
+
+    <h3>typeof() 연산자</h3>
+    <p>값의 자료형을 확인하는 연산자이다.</p>
+    <p>선언 시 자료형을 지정하지 않기 때문에 변수명만으로 데이터의 자료형을 확인할 수 없으므로<br>
+       변수의 자료형 확인 시 자주 사용한다.
+    </p>
+    <button onclick="typeofTest();">typeof() 확인</button>
+    <div id="area2" class="area2"></div>
+    <script>
+        function typeofTest(){
+            let name = "홍길동";
+            let age = 20;
+
+            let area2 = document.getElementById("area2");
+
+            area2.innerHTML += "name의 자료형 : " + typeof(name) + "<br>";
+            area2.innerHTML += "age의 자료형 : " + typeof(age) + "<br>";
+        }
+    </script>
+
+    <hr>
+
+    <h3>강제형변환</h3>
+    <p>Number(), parseInt(), parseFloat() 함수를 이용하여 강제 형변환할 수 있다.</p>
+    <button onclick="castingTest();">casting 테스트</button>
+    <script>
+        function castingTest(){
+            let num1 = 2;
+            let num2 = "3";
+
+            console.log(num1 + num2);
+            console.log(num1 + Number(num2));
+            console.log(num1 + parseInt(num2));
+            console.log(num1 + parseFloat(num2));
+        }
+    </script>
+
+    <br><br><br>
+    <a href="../index.html">처음으로 돌아가기</a>
+</body>
+</html>

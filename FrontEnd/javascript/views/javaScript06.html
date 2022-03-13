@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        // 전역변수
+        str = "전역변수";
+        // 함수 외부에 선언한 변수는 var를 붙여도 전역변수
+        var str2 = "let전역변수";
+
+        // window객체가 로드될때(시작하자마자) 동작할 이벤트
+        window.onload = function() {
+
+            var str = '지역변수';
+            console.log(str);
+            console.log(window.str);
+            console.log(this.str);
+        }
+    </script>
+    <style>
+        .area1 {
+            border:1px solid black;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+    <p> 
+        var : 변수를 선언, 추가로 동시에 값을 초기화<br>
+        let : 블록 범위({}) 지역변수를 선언, 추가로 동시에 값을 초기화<br>
+        const : 블록 범위({}) 읽기 전용 상수를 선언
+    </p>
+    <script>
+        var name;
+        console.log("name : " + name);
+
+        console.log("age : " + age);
+        var age;
+
+        // let 변수 선언
+        let id;
+        console.log("id : " + id);
+
+        //console.log("password : " + password);
+        //let password;
+
+        if(true){
+            var value = 10;
+        }
+
+        console.log("value : " + value);
+
+        if(true){
+            let gender = 'M';
+        }
+
+        // console.log("gender : " + gender);
+
+        // 상수
+        // 변하지 않는 변수를 선언할 때는 let대신에 const를 사용
+        const pi = 3.14;
+
+       //pi = 3.141;
+
+       // 상수를 선언할 때는 대문자와 밑줄(_)로 이름을 명명한다.
+       const RED_COLOR = "255,0,0";
+
+       let red = RED_COLOR;
+       console.log("RED의 RGB 값 : " + red);
+    </script>
+
+    <hr>
+
+    <h3>자료형</h3>
+    <p>자바스크립트에서는 자료형별로 변수 타입이 지정되지 않고 리터럴에 의해 자료형이 결정된다.</p>
+    <button onclick="testType();">자료형 테스트</button>
+    <br><br>
+    <div id="area1" class="area1"></div>
+    <script>
+
+        function testType(){
+            // 문자열 변수
+            // 1. 큰따옴표 : "Ohgiraffers"
+            // 2. 작은 따옴표 : 'Ohgiraffers'
+            // 3. 역따옴표 : `Ohgiraffers`
+            let name = "홍길동";
+            let name2 = '유관순';
+            let name3 = "강감찬";
+
+            console.log(typeof(name) + " : " + name);
+            console.log(typeof(name2) + " : " + name2);
+            console.log(`Hello, ${name3}!`);
+            // 숫자 변수
+            let age = 20;
+            console.log(typeof(age) + " : " + age);
+            // 논리 변수
+            let check = true;
+            console.log(typeof(check) + " : " + check);
+            // 배열 변수
+            let hobby = ["축구","농구","야구"];
+            console.log(typeof(hobby) + " : " + hobby);
+            // 객체 변수
+            let user = {
+                name:'유승제', age:20, id:'user01'
+            }
+            console.log(typeof(user) + " : " + user);
+
+            //함수 변수
+            let testFunction = function testFunction(num1, num2) {
+                let sum = num1 + num2;
+                console.log(sum);
+            }
+            console.log(typeof(testFunction) + " : " + testFunction);
+
+            let area1 = document.getElementById("area1");
+
+            area1.innerHTML += "문자열 변수 : " + name + "<br>";
+            area1.innerHTML += "숫자 변수 : " + age + "<br>";
+            area1.innerHTML += "논리 변수 : " + check + "<br>";
+            area1.innerHTML += "배열 : " + hobby + "<br>";
+            area1.innerHTML += "배열인덱스[0] : " + hobby[0] + "<br>";
+            area1.innerHTML += "객체 : " + user.name + ", " + user.age + ", " + user.id + "<br>";
+            area1.innerHTML += "함수 : " + testFunction + "<br>";
+        }
+    </script>
+
+    <hr>
+
+    <h3>동적 타입 테스트</h3>
+    <p>자바스크립트에서 변수는 타입이 지정되는 것이 아닌, 동적으로 타입이 결정된다.</p>
+    <button onclick="testDynamicType();">실행확인</button>
+    <div id="area2"></div>
+    <script>
+        function testDynamicType(){
+            let area2 = document.getElementById("area2");
+
+            let testVariable = 123;
+
+            console.log(typeof(testVariable) + " : " + testVariable);
+
+            testVariable = "안녕하세요";
+
+            console.log(typeof(testVariable) + " : " + testVariable);
+
+            testVariable = [0, 1, 2, 3, 4];
+            console.log(typeof(testVariable) + " : " + testVariable);
+
+
+        }
+    </script>
+
+    <br><br><br>
+    <a href="../index.html">처음으로 돌아가기</a>
+</body>
+</html>

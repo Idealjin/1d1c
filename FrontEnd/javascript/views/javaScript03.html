@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .area {
+            border: 1px solid red;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML 태그에 접근하기</h1>
+    <h3>아이디로 접근</h3>
+    <div id="area1" class="area"></div>
+    <button onclick="accessId();">아이디로 접근</button>
+    <script>
+        function accessId() {
+            
+            let area1 = document.getElementById("area1");
+            area1.innerHTML += "아이디로 접근 성공!<br>";
+            area1.style.background = "yellow";
+        }
+    </script>
+
+    <hr>
+
+    <h3>태그명으로 접근</h3>
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+    <button onclick="accessTagName();">태그명으로 접근</button>
+    <script>
+        function accessTagName(){
+
+            let list = document.getElementsByTagName("li");
+
+            console.log(list);
+            let changeColor = 50;
+            // for(let i in list){
+            //     list[i].style.background = "rgb(130,200,"+ changeColor + ")";
+            //     changeColor += 50;
+            // }
+
+            for(let i = 0; i < list.length; i++){
+                list[i].style.background = "rgb(130,200,"+ changeColor + ")";
+                changeColor += 50;
+            }
+        }
+    </script>
+
+    <h3>name으로 접근</h3>
+    <form>
+		<fieldset>
+			<legend>취미</legend>
+			<table>
+				<tr>
+					<td><input type="checkbox" name="hobby" value="game" id="game"><label for="game">게임</label></td>
+					<td><input type="checkbox" name="hobby" value="misic" id="misic"><label for="misic">음악감상</label></td>
+					<td><input type="checkbox" name="hobby" value="movie" id="movie"><label for="movie">영화보기</label></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="hobby" value="reading" id="reading"><label for="reading">독서</label></td>
+					<td><input type="checkbox" name="hobby" value="trevle" id="trevle"><label for="trevle">여행</label></td>
+					<td><input type="checkbox" name="hobby" value="exercise" id="exercise"><label for="exercise">운동</label></td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+    <div id="area2" class="area"></div>
+    <button onclick="accessName();">name으로 접근</button>
+    <script>
+        function accessName(){
+            let hobby = document.getElementsByName("hobby");
+            console.log(hobby);
+            console.log(hobby.length);
+
+            let checkItem = "";
+
+            for(let i in hobby){
+                if(hobby[i].checked == true){
+                    checkItem += hobby[i].value + "선택함<br>";
+                }
+            }
+            console.log(checkItem);
+
+            document.getElementById("area2").innerHTML = checkItem;
+        }
+    </script>
+
+    <br><br><br>
+    <a href="../index.html">처음으로 돌아가기</a>
+</body>
+</html>
