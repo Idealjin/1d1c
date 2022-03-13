@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .area{
+            background: lightgray;
+            border : 1px solid black;
+            width : 300px;
+            height: 100px;
+            font-size: 40px;
+            color : red;
+        }
+        .area-big {
+            background: lightgray;
+            border: 1px solid black;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Window 객체</h1>
+    <p>Window객체는 자바스크립트의 최상위 객체이며 BOM과 DOM으로 나눠진다.</p>
+    <p>BOM(Browser Object Model) : location, navigator, screen..객체</p>
+    <p>DOM(Document Object Model) : document객체</p>
+
+    <h3>Window 객체</h3>
+    <p>브라우저 창에 대한 설정을 하는 객체</p>
+
+    <button onclick="test1();">네이버</button>
+    <script>
+        function test1(){
+            // window.open();
+            // window.open('팝업주소','팝업이름','팝업설정');
+
+            window.open("http://www.naver.com","네이버",'location=0, menubar=no');
+        }
+    </script>
+
+    <br>
+    <h3>window객체의 timer메소드</h3>
+    <h4>setTimeoust()</h4>
+    <button onclick="test3();">실행확인</button>
+    <script>
+        function test3(){
+
+            let myWindow = window.open();
+
+            myWindow.alert("3초 뒤에 이 페이지는 종료됩니다.");
+
+            window.setTimeout(function(){
+                // myWindow.alert("뻥이지롱~~~");
+                myWindow.close();
+            }, 3000);
+        }
+    </script>
+
+    <br>
+
+    <h4>setInterval()</h4>
+    <button onclick="test4();">실행확인</button>
+    <div id="area1" class="area"></div>
+    <script>
+
+        function test4() {
+
+            let area1 = document.getElementById("area1");
+
+            window.setInterval(function() {
+                let date = new Date();
+
+                area1.innerHTML = date.getHours() + " : " 
+                                + date.getMinutes() + " : "
+                                + date.getSeconds();
+            }, 1000);           
+        }
+    </script>
+
+    <br>
+
+    <h4>clearInterval()</h4>
+    <button onclick="test5();">실행확인</button>
+    <div id="area2" class="area"></div>
+    <script>
+        function test5() {
+            let area2 = document.getElementById("area2");
+
+            let count = 10;
+
+            let intervalId = window.setInterval(function(){
+
+                area2.innerHTML = "contdown : " + count--;
+
+                setTimeout(function(){
+                    clearInterval(intervalId);
+                    area2.innerHTML += "종료!";
+                }, 10000);
+            }, 1000);
+        }
+    </script>
+
+    <h3>screen객체</h3>
+    <p>웹 브라우저 화면이 아닌 운영체제 화면의 속성을 가지는 객체이다.</p>
+    <button onclick="test6();">실행확인</button>
+    <script>
+
+        function test6() {
+            let width = screen.width;
+            let height = screen.height;
+            console.log(width + " : " + height);
+
+            let child = window.open("","","width=900, height=500");
+
+            // 윈도우의 절대크기
+            child.resizeTo(width, height);
+
+            setInterval(function(){
+                // 윈도우 상대 크기 조절
+                child.resizeBy(-20, -20);
+                // 윈도우 상대 위치 조절
+                child.moveBy(10,10);
+            }, 500);
+
+            console.log("실제 화면에서 사용 가능한 너비 : " + screen.availWidth);
+            console.log("실제 화면에서 사용 가능한 높이 : " + screen.availHeight);
+            console.log("한 픽셀당 비트수 : " + screen.pixelDepth);
+        }
+    </script>
+
+    <hr>
+
+    <h3>location객체</h3>
+    <p>브라우저 주소 표시줄과 관련된 객체이다.</p>
+    <button onclick="test7();">실행확인</button>
+    <div id="area3" class="area-big"></div>
+
+    <script>
+
+        function test7(){
+
+            let area3 = document.getElementById("area3");
+
+            for(let key in location){
+                area3.innerHTML += key + " : " + location[key] + "<br>";
+            }
+        }
+    </script>
+
+    <br>
+    <button onclick="location = 'http://www.naver.com'">네이버로이동</button>
+    <button onclick="location.href = 'http://www.naver.com'">네이버로이동</button>
+
+    <button onclick="location = location">새로고침</button>
+    <button onclick="location.href = location.href">새로고침</button>
+    <!--reload는 현재 위치에서 새로고침한다.-->
+    <button onclick="location.reload();">새로고침</button>
+
+    <button onclick="location.replace('http://google.com')">구글로 이동</button>
+    <button onclick="location.assign('http://google.com')">구글로 이동</button>
+
+    <hr>
+
+    <h3>navigator 객체</h3>
+    <p>웹 페이지를 실행하고 있는 브라우저에 대한 정보를 가지고 있는 객체</p>
+    <button onclick="test8();">실행확인</button>
+    <div id="area8" class="area-big"></div>
+    <script>
+
+        function test8(){
+
+            let str = "";
+
+            for(let key in navigator){
+                str += key + " : " + navigator[key] + "\n";
+            }
+
+            alert(str);
+
+            let area8 = document.getElementById("area8");
+
+            area8.innerHTML += "브라우저의 코드명 : " + navigator.appCodeName + "<br>";
+            area8.innerHTML += "브라우저의 이름 : " + navigator.appName + "<br>";
+            area8.innerHTML += "브라우저의 전체 정보 : " + navigator.userAgent + "<br>";
+            area8.innerHTML += "브라우저 언어 : " + navigator.language + "<br>";
+            area8.innerHTML += "사용중인 운영체제 : " + navigator.platform + "<br>";
+
+            // https://developer.mozilla.org/ko/docs/Web/API/Navigator
+        }
+    </script>
+</body>
+</html>
