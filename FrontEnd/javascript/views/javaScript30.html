@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .area{
+            background: lightgray;
+            border: 1px solid black;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <h3>고전 이벤트 모델</h3>
+    <button id="test1">test1() 실행확인</button>
+    <button id="test2">test2() 실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        let test1 = document.getElementById("test1");
+        let test2 = document.getElementById("test2");
+
+        test1.onclick = function(){
+            let area1 = document.getElementById("area1");
+
+            area1.innerHTML += "test1()이 실행되었습니다.<br>";
+
+        }
+
+        test2.onclick = function(){
+            let area1 = document.getElementById("area1");
+
+            area1.innerHTML += "test2()가 실행되면서 test1()이벤트를 제거<br>";
+            tset1.onclick = null;
+        }
+
+    </script>
+
+    <hr>
+
+    <h3>이벤트 발생 객체</h3>
+    <button id="test3">test3() 실행확인</button>
+    <div class="area" id="area2"></div>
+    <script>
+        let test3 = document.getElementById("test3");
+
+        test3.onclick = function(e){
+           // alert(e);
+           this.style.background="red";
+           this.style.color = "white";
+            //넘어오는 값이 있으면 e값을 대입, 없으면 window.event 값을 대입(IE는 e값이 안넘어 온다.)
+           let event = e || window.event;
+
+           let area2 = document.getElementById("area2");
+
+           for(let key in event){
+               area2.innerHTML += key + " : " + event[key] + "<br>";
+           }
+        }
+
+    </script>
+
+    <hr>
+
+    <h3> 인라인 이벤트 모델 </h3>
+    <button onclick="test4();">실행확인</button>
+    <div class="area" id="area3"></div>
+    <script>
+        function test4(){
+            alert("test4() 실행확인");
+        }
+    </script>
+
+    <button onclick="let test = '안녕하세요'; alert(test);">alert 테스트</button>
+
+    <hr>
+
+    <h3>
+        표준 이벤트 모델
+    </h3>
+
+    <p> 한번에 여러가지 이벤트 핸들러를 추가할 수 있다.</p>
+    <button id="btn">실행확인</button>
+    <script>
+        window.onload = function(){
+            let btn = document.getElementById("btn");
+
+            btn.addEventListener('click',function(){
+                alert("표준이벤트");
+            });
+            btn.addEventListener('mouseenter', function(){
+                btn.style.background = "red";
+            });       
+        }
+    </script>
+
+    <hr>
+
+    <h3>
+        기본 이벤트의 제거
+    </h3>
+
+    <p>a태그는 클릭하면 다른 페이지로 이동을 한다.<br>
+        submit버튼이나 form안의 일반 버튼을 누르면 자동으로 입력양식을 제출하고 새로고침한다.
+    </p>
+    <form>
+        <label>이름 : </label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label>아이디 : </label>
+        <input type="text" name="userid" id="userid">
+        <br>
+        <label>비밀번호 : </label>
+        <input type="password" name="password" id="password">
+        <br>
+        <label>비밀번호확인 : </label>
+        <input type="password" name="password2" id="password2">
+        <br>
+        <input type="submit" value="제출" onclick="return test5();" >      
+     </form>
+
+     <script>
+         function test5(){
+             let name = document.getElementById("name").value;
+             let userid = document.getElementById("userid").value;
+             let password = document.getElementById("password").value;
+             let password2 = document.getElementById("password2").value;
+
+             console.log("name : " + name);
+             console.log("userid : " + userid);
+             console.log("password : " + password);
+             console.log("password2 : " + password2);
+            
+             //비밀번호가 같은지 확인
+             if(password == password2){
+                 alert('비밀번호가 일치합니다.');
+             } else{
+                 alert('비밀번호가 틀립니다.');
+                 document.getElementById("password2").select();
+                 return false;
+             }
+             return true;
+         }
+     </script>
+
+
+
+
+
+</body>
+</html>

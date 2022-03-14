@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .area{
+            background: lightgray;
+            border : 1px solid black;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1> 정규 표현식</h1>
+    <button onclick="test1();">확인하기</button>
+    <div id="area1" class="area"></div>
+    <script>
+        //정규식 변수 선언
+        //let regExp = new RegExp("script");
+        let regExp = /script/;  //위에것과 동일하다.
+        let str = "javascript jquery ajax";
+        //메서드를 사용
+        let area1 = document.getElementById("area1");
+
+        area1.innerHTML += "test() 함수 사용 : " + regExp.test(str) + "<br>";
+        area1.innerHTML += "exec() 함수 사용 : " + regExp.exec(str) + "<br>";
+
+        //정규 표현식의 메소드를 직접 사용하기 보다는 string 메소드를 사용하는 것이 일반적이다.
+        area1.innerHTML += "match()함수 사용" + str.match(regExp) + "<br>";
+        area1.innerHTML += "replace()함수 사용" + str.replace(regExp,"스크립트") + "<br>";
+        area1.innerHTML += "search()함수 사용" + str.search(regExp) + "<br>";
+        area1.innerHTML += "split()함수 사용" + str.split(regExp) + "<br>";
+
+
+    </script>
+
+    <hr>
+
+    <h3> 대체 문자</h3>
+    <p> 정규 표현식을 사용하면 문자열 객체의 replace() 메소드를 사용할 떄 대체 문자를 사용할 수 있다.</p>
+    <button onclick="test2();">실행확인</button>
+    <div id="area2" class="area"></div>
+    <script>
+        function test2(){
+            let regExp = /a/;
+            let str = "javascript jquery ajax";
+            //일치하는 문자열
+            //let output = str.replace(regExp, '($&)');
+            //일치하는 부분의 앞부분 문자열
+            let output = str.replace(regExp, '($`)');
+            alert(output);
+        }
+    </script>
+
+    <h3> 플래그 문자 </h3>
+    <p>
+        g : 전역비교를 수행한다. <br>
+        i : 대소문자를 가리지 않고 비교한다. <br>
+        m : 여러줄의 검사를 수행한다. 
+
+    </p>
+
+    <button onclick="test3();">실행확인</button>
+    <div class="area" id="area3"></div>
+
+    <script>
+
+        function test3(){
+            let regExp = /a/ig;
+
+            let str = "JavaScript Jquery Ajax"
+
+            let area3 = document.getElementById("area3");
+
+            area3.innerHTML += str.replace(regExp, "($&)");
+
+        }
+
+    </script>
+
+
+    <h3>앵커 문자</h3>
+    <p> 문자열의 앞과 뒤를 구분해주는 정규표현식 기호</p>
+    <button onclick="test4();"> 실행확인 </button>
+    <div class="area" id="area4"></div>
+    <script>
+        function test4(){
+
+            let regExp = /^j/gim;  //j로 시작하는것은 ^로 표현
+
+            let str = "JavaScript\nJQeury\nAjax";
+
+            let area4 = document.getElementById("area4");
+
+            area4.innerHTML += "^ABC : " + str.replace(regExp, '($&)') + "<br>";
+
+            let regExp2 = /ipt$/gim; //ipt로 끝나는거 $로 표현
+
+            area4.innerHTML += "ABC$ : " + str.replace(regExp2, '($&)') + "<br>";
+
+        }
+    </script>
+    
+    <hr>
+
+    <h3> 메타문자 </h3>
+    <p> 자바스크립트 정규 표현식 객체가 갖는 가장 유용한 기능이다.</p>
+    <button onclick="test5();"> 실행확인 </button>
+    <div class="area" id="area5"></div>
+    <script>
+        function test5(){
+            let regExp1 = /[aj]/ig;
+            let regExp2 = /[^aj]/ig; //[]안의 ^는 시작의 의미가 아닌 제외한다는 의미이다.
+            let regExp3 = /[a-z]/g; //범위를 지정
+            let regExp4 = /[0-9]/g;
+            let regExp5 = /[가-힣]/g;
+            
+
+
+            let str1 = "JavaScript JQeury Ajax";
+            let str2 = "123JavaScript안녕하세요";
+
+            let area5 = document.getElementById("area5");
+            area5.innerHTML += "[aj] : " + str1.replace(regExp1, "($&)") + "<br>";
+            area5.innerHTML += "[^aj] : " + str1.replace(regExp2, "($&)") + "<br>";
+            area5.innerHTML += "[a-z] : " + str2.replace(regExp3, "($&)") + "<br>";
+            area5.innerHTML += "[0-9] : " + str2.replace(regExp4, "($&)") + "<br>";
+            area5.innerHTML += "[가-힣] : " + str2.replace(regExp5, "($&)") + "<br>";
+        }
+
+    </script>
+
+    <h3> 메타문자를 이용한 확인</h3>
+    <label>주민번호 입력 : </label>
+    <input type="text" name="" id="pno">
+    <button onclick="test6();">실행확인</button>
+    <div class="area" id="area6"></div>
+
+    <script>
+        function test6(){
+
+            let regExp = /......-......./;
+
+            let pno = document.getElementById("pno").value;
+
+            console.log(regExp.test(pno));
+            
+            if(regExp.test(pno)){
+                alert("정상입력");
+            } else{
+                alert("비정상입력");
+            }
+
+        }
+    </script>
+
+    <hr>
+
+    <h3> 추가 메타 문자</h3>
+    <p> \d : 숫자<br>
+        \w : 아무 단어(숫자포함)<br>
+        \s : 공백문자(탭, 띄어쓰기, 줄바꿈)<br>
+        \D : 숫자가 아님 <br>
+        \W : 아무 단어 아님 <br>
+        \S : 공백문자 아님 <br>
+    </p>
+
+    <label>주민번호 입력 : </label>
+    <input type="text" name="" id="pno2">
+    <button onclick="test7();">실행확인</button>
+    <div class="area" id="area7"></div>
+
+    <script>
+        function test7(){
+            let regExp = /\d\d\d\d\d\d-[1-4]\d\d\d\d\d\d/;
+            let pno = document.getElementById("pno2").value;
+
+             console.log(regExp.test(pno));
+
+            if(regExp.test(pno)){       
+                 alert("정상입력");
+            } else{
+                  alert("비정상입력");
+            }
+
+        }
+    </script>
+
+
+    <h3>수량문자</h3>
+    <p>a+ : a가 적어도 1개 이상<br>
+        a* : a가 0개 또는 여러개<br>
+        a? : a가 0개 또는 1개<br>
+        a{5} : a가 5개<br>
+        a{2,5} : a가 2~5개<br>
+        a{2,} : a가 2개 이상<br>
+        a{,5} : a가 5개 이하</p>
+
+        <label>주민번호 입력 : </label>
+        <input type="text" name="" id="pno3">
+        <button onclick="test8();">실행확인</button>
+        <div class="area" id="area8"></div>
+
+        <script>
+            function test8(){
+                //let regExp = /\d{2}\d{2}\d{2}-[1-4]\d{6}/
+                
+                let regExp = /\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])-[1-4]\d{6}/
+
+                let pno = document.getElementById("pno3").value;
+
+                console.log(regExp.test(pno));
+
+            if(regExp.test(pno)){       
+               alert("정상입력");
+            } else{
+                alert("비정상입력");
+            }
+
+
+            }
+        </script>
+
+        <h3>유효성 검사</h3>
+        <form>
+            <input type="text" id="num1">
+            <input type="text" id="num2">
+            <input type="submit" value="결과보기" onclick="return sum();">
+
+        </form>
+        <script>
+            function sum(){
+            let num1 = parseInt(document.getElementById("num1").value);
+            let num2 = parseInt(document.getElementById("num2").value);
+
+            let regExp3 = /\d{1,5}/;
+
+            if(!regExp.test(num1)){
+                alert('숫자를 입력하세요');
+                document.getElementById("num1").select();
+                return false;
+            } else if(!regExp3.test(num2)){
+                alert("숫자를 입력하세요.");
+                document.getElementById("num2").select();
+                return false;
+            } else{
+                alert(num1 + num2);
+            }
+            return true;
+        }
+</script>
+
+
+</body>
+</html>

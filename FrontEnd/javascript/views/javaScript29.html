@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100%;
+            height: 200px;
+            border: 1px black;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM(Ducument Object Model)</h1>
+    <h3> 텍스트 노드가 있는 노드 생성</h3>
+    <button onclick="test1();"> 실행확인 </button>
+    <div class="area" id="area1"></div>
+    <script>
+        function test1(){
+            //element 생성
+            let title = document.createElement("h3");
+            //textnode 생성
+            let textnode = document.createTextNode("안녕? 난 뽀로로야!");
+
+            //노드를 연결
+            title.appendChild(textnode);
+            document.getElementById("area1").appendChild(title);
+        }
+    </script>
+
+<h3> 텍스트 노드가 없는 노드 생성</h3>
+<button onclick="test2();"> 실행확인 </button>
+<div id="area2" class="area"></div>
+<script>
+    function test2(){
+        let imgTest = document.createElement("img");
+
+        //속성지정
+        imgTest.src = "http://tantv.com/wp-content/uploads/2015/09/25765_23201_54451-900x444.jpg";
+        imgTest.width = "150";
+        imgTest.height = "150";
+        imgTest.myProperty = "123";
+
+        imgTest.setAttribute("myProperty2", "1234");
+
+        document.getElementById("area2").appendChild(imgTest);
+    }
+</script>
+
+<hr>
+
+<h3> innerHTML</h3>
+<button onclick="test3();">실행확인</button>
+<div id= "area3" class="area">
+    <table id = "board">
+        <tr>
+            <th> 글번호</th>
+            <th> 글제목</th>
+            <th> 작성자</th>
+            <th> 조회수</th>
+            <th> 작성일자</th>
+        </tr>
+    </table>
+
+</div>
+<script>
+function test3(){
+    let board = document.querySelector("#board > tbody");
+
+    let num = 1;
+    let title = "제목입니다.";
+    let user = "user01";
+    let count = 1;
+    let date = new Date();
+
+    board.innerHTML += "<tr><td>" + num
+                    + "</td><td>" + title
+                    + "</td><td>" + user
+                    + "</td><td>" + count
+                    + "</td><td>" + date.getFullYear()
+                        + "-"
+                        + (date.getMonth() + 1)
+                        + "-"
+                        + date.getDate()
+                        + "</td></tr>";
+
+                        
+                    
+}
+
+</script>
+
+<h3> 스타일 지정 </h3>
+<button onclick="test4();">실행확인</button>
+<div id="area4" class="area"></div>
+<script>
+    function test4(){
+        let area4 = document.getElementById("area4");
+
+        area4.style.background= "orangered";
+        area4.style.borderRadius = "50px";
+        area4.style.transition = "all 2s";
+    }
+</script>
+
+<h3> 노드 삭제</h3>
+<button onclick="test5();">실행 확인</button>
+<div class="area" id="area5"></div>
+<script>
+    function test5(){
+        let area5 = document.getElementById("area5");
+
+        area5.remove();
+    }
+</script>
+</body>
+</html>
