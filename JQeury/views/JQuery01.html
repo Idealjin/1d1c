@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 직접 다운로드 받아 연결하는 방법 -->
+    <script src="../resource/js/jquery-3.6.0.min.js"></script>
+
+    <!-- CDN 방식으로 연결하기 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>제이쿼리 개요</h1>
+    <h3>제이쿼리란?</h3>
+    <p>존 레식에 의해 개발된 JS결량화 라이브러리로,<br>
+       복잡한 자바스크립트 구문을 짦고 쉽게 개발할 수 있도록 구현된 라이브러리이다.
+    </p>
+    <p>
+        --JQuery장점--<br>
+        1. DOM과 관련된 스크립트를 쉽게 구현할 수 있다.<br>
+        2. ajax(비동기)통신, 이벤트 처리 등을 폭넓게 지원한다.<br>
+        3. JQuery와 관련되 확장형 플러그인, 오픈 API를 다양하게 지원하며, 차트, 슬라이드, 애니매이션을 간단하게 구현할 수 있다.
+    </p>
+
+    <hr>
+
+    <h3>제이쿼리 연결방법</h3>
+    <p id="p1">
+        1. Jquery웹사이트에서 JS파일을 다운로드한 후 연결하는 방법<br>
+        2. CDN(Content Delivery Network)을 통해 연결하는 방법
+    </p>
+    <script>
+        // JS의 경우
+        // document.getElementById('p1').style.background = 'navy';
+        // document.getElementById('p1').style.color = 'white';
+
+        // JQuery의 경우
+        // jQuery("#p1").css('background','navy');
+        // jQuery("#p1").css('color','white');
+
+        //jQuery("#p1").css('background','navy').css('color','white');
+
+        $("#p1").css({
+            "background":"navy",
+            "color":"white"
+        });
+    </script>
+
+    <hr>
+
+    <h3>$(document).ready()</h3>
+    <p id="p2">
+        현재 웹 문서를 로드한 후 ready함수를 실행한다.<br>
+        해당 내용은 document.onload와 동일하다.
+    </p>
+    <script>
+        // document.onload = function(){....}
+
+        // jQuery(document).ready(
+        //     function(){
+        //         alert('네, 제가 바로 그 제이쿼리입니다.');
+        //     }
+        // );
+
+        // $(document).ready(function(){
+        //     alert('저도 제이쿼리입니다.');
+        // });
+
+        $(function(){
+            alert("제가 최종 축약형태입니다.");
+        });
+    </script>
+</body>
+</html>
