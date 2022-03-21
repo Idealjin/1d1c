@@ -17,7 +17,8 @@ public class BeforeAttendingAdvice {
 	 * 포인트컷은 여러 조인포인트를 매치하기 위해 지정한 표현식이고, 이렇게 매치된
 	 * 조인 포인트에서 해야할 일이 어드바이스이다.
 	 * */
-	@Before("execution(* com.ohgiraffers.section01.advice.annotation..*(..))")
+//	@Before("execution(* com.ohgiraffers.section01.advice.annotation..*(..))")
+	@Before("StudentPointcut.studyPointcut()")
 	public void beforeAttending(JoinPoint joinPoint) {
 		
 		System.out.println("===================== before attending ======================");
