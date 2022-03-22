@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="../../../resources/css/board1-2-write.css">
+	<script src="../../../resources/js/jquery-3.6.0.min.js"></script>
+
+
+</head>
+<body>
+
+<div class="container">
+	<aside class="side">
+		<div class="profile">
+			<div class="img"><img src="../../../resources/images/jjanggu.jpg" alt=""></div>
+			<div class="set"><img src="../../../resources/images/seting.png" alt=""></div>
+			<p>나대리</p>
+			<span>꿀잠 지원실 / 대리</span><br>
+			<a href="#">로그아웃</a>
+		</div>
+		<div class="menu">
+			<div><a href="#">홈</a></div>
+			<div><a href="#">전자결재</a></div>
+			<div>
+				<a href="#">게시판</a>
+			</div>
+			<div class="sub-menu">
+				<p><a href="#">공유게시판</a></p>
+				<p><a href="#">새소식게시판</a></p>
+				<p><a href="#">자유게시판</a></p>
+				<p><a href="#">질문게시판</a></p>
+				<p><a href="#">사내게시판</a></p>
+			</div>
+			
+			<div><a href="#">일정</a></div>
+			<div><a href="#">주소록</a></div>
+		</div>
+	</aside>
+	<section class="section">
+		<div class="board">
+			<h2>글쓰기</h2>
+			<div>
+				To.
+				<select name="boardSel" class="boardSel">
+					<option selected>자유게시판</option>
+					<option>질문게시판</option>
+					<option>사내게시판</option>
+				</select>
+			</div>
+			<hr>
+				<div class="titleBox">
+					<div>제목<input type="text" class="title"></div>
+					<br>
+					<div>파일 첨부 <input type="file" class="fileBox"></div>
+				</div>
+				
+			<div class="textBox">
+				<p>이곳은 내용입니다.</p>
+			</div>
+		    <div class="buttons">
+			<button>등록</button>
+			<button>취소</button>
+		    </div>
+		</div>
+	</section>
+</div>
+
+
+<script>
+	$('.menu div:nth-child(3)').click(function () {
+		$('.sub-menu').toggleClass('active');
+	})
+</script>
+
+
+</body>
+</html>
