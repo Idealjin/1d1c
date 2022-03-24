@@ -1,16 +1,24 @@
 package com.ohgiraffers.parameter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/first/*")
+@SessionAttributes({"id","pwd"})
 public class FirstController {
 
 	@GetMapping("regist")
@@ -71,7 +79,70 @@ public class FirstController {
 	}
 
 		
+	/* 3. @ModelAttribute를 이용하는 방법 */
+	@GetMapping("search")
+	public void search() {}
+	
+	@PostMapping("search")
+	public String searchMenu(@ModelAttribute("menu") MenuDTO menu) {
+		System.out.println(menu);
 		
+		return "first/searchResult";
+	}
+	@GetMapping("login")
+	public void login() {}
+	
+	//3-1 Session 이용하기
+	
+	@PostMapping("login1")
+	public String sessionTest1(HttpSession session, @RequestParam String id) {
+		session.setAttribute("id", id);
+		return "first/loginResult";
+		
+	}
+	
+	@GetMapping("logout1")
+	public String logoutTest1(HttpSession session) {
+		session.invalidate();
+		return "first/loginResult";
+	}
+		
+	//3-2. @SessionAttribute를 이용하여 session에 값 담기
+	/* 클래스 레벨에 @SessionAttributes 어노테이션을 이용하여 세션에 값을 담을 key값을 설정해두면
+	 * model영역에 해당 key로 값이 추가되는 경우 session에 자동 등록을 한다.
+	 * */
+	@PostMapping("login2")
+	public String sessionTest2(Model model, @RequestParam String id, @RequestParam String pwd) {
+		model.addAttribute("id", id);
+		model.addAttribute("pwd",pwd);
+		
+		return "first/loginResult";
+		
+	}
+	
+	//setComplete()메소드를 호출해야 사용이 만료된다.
+	@GetMapping("logout2")
+	public String logoutTest2(SessionStatus sessionStatus) {
+		//현재 컨트롤러 세션에 저장된 모든 정보를 제거한다. 개별 제거는 불가능하다.
+		sessionStatus.setComplete();
+		
+		return "first/loginResult";
+	}
+	
+	@GetMapping("body")
+	public void body() {}
+	
+	@PostMapping("body")
+	public String bodyTest(@RequestBody String body,
+			@RequestHeader("content-type") String contentType,
+			@CookieValue("JSESSIONID") String sessionId) {
+		System.out.println(contentType);
+		System.out.println(sessionId);
+		System.out.println(body);
+		
+		return "first/bodyResult";
+	}
+	
 }
 	
 	

@@ -22,6 +22,24 @@
 		@RequestParam 이용하기
 	</button>
 	
+	
+	<h3>3. @ModelAttribute를 이용하여 파라미터 전달 받기</h3>
+	<button onclick="location.href='${pageContext.servletContext.contextPath}/first/search'">
+		@ModelAttribute이용하기
+	</button>
+	
+	<h3> 3-1, 3-2.  HttpSession 이용하기</h3>
+    <button onclick="location.href='${pageContext.servletContext.contextPath}/first/login'">
+    	session에 정보담기
+    </button>
+	
+	<h3>4. @RequestBody를 이용하여 파라미터 전달받기</h3>
+	<button onclick="location.href='${pageContext.servletContext.contextPath}/first/body'">
+		@RequestBody 이용하기
+	</button>
+	
+	
+	
 
 </body>
 </html>
