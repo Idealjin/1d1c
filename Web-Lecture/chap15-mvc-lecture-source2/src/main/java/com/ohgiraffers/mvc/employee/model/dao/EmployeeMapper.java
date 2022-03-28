@@ -12,7 +12,6 @@ public interface EmployeeMapper {
 
 	int insertEmp(EmployeeDTO emp);
 
-	int deleteEmp(EmployeeDTO emp);
-
 	
+
 }

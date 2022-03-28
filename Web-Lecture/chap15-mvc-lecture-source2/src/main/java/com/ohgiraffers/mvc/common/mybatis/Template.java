@@ -17,19 +17,20 @@ public class Template {
 	public static SqlSession getSqlSession() {
 		
 		if(sqlSessionFactory == null) {
-			
-			String resource = ConfigLocation.mybatisConfigLocation;
+			String resouce = ConfigLocation.mybatisConfigLocation;
 			
 			try {
-				InputStream inputStream = Resources.getResourceAsStream(resource);
+				InputStream inputStream = Resources.getResourceAsStream(resouce);
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
 		}
-		
 		SqlSession sqlSession = sqlSessionFactory.openSession(false);
 		
 		return sqlSession;
+		
 	}
 }

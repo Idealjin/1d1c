@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 align="center">Welcome to MVC land!</h1>
+	<H1 align="center">Welcome to MVC land! </H1>
 </body>
 </html>

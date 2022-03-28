@@ -19,7 +19,9 @@ public class EmployeeDTO {
 	private java.sql.Date entDate;
 	private String entYn;
 	
-	public EmployeeDTO() {}
+	public EmployeeDTO() {
+		super();
+	}
 
 	public EmployeeDTO(String empId, String empName, String empNo, String email, String phone, String deptCode,
 			String jobCode, String salLevel, int salary, double bonus, String managerId, Date hireDate, Date entDate,
@@ -160,4 +162,9 @@ public class EmployeeDTO {
 				+ ", salary=" + salary + ", bonus=" + bonus + ", managerId=" + managerId + ", hireDate=" + hireDate
 				+ ", entDate=" + entDate + ", entYn=" + entYn + "]";
 	}
+	
+	
+	
+	
+	
 }

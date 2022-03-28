@@ -1,26 +1,26 @@
 package com.ohgiraffers.mvc.employee.model.service;
 
-import org.apache.ibatis.session.SqlSession;
 
-import com.ohgiraffers.mvc.employee.model.dao.EmployeeMapper;
-import com.ohgiraffers.mvc.employee.model.dto.EmployeeDTO;
+import org.apache.ibatis.session.SqlSession;
 import static com.ohgiraffers.mvc.common.mybatis.Template.getSqlSession;
 
 import java.util.List;
 
-public class EmployeeService {
+import com.ohgiraffers.mvc.employee.model.dao.EmployeeMapper;
+import com.ohgiraffers.mvc.employee.model.dto.EmployeeDTO;
 
-	private EmployeeMapper mapper;
+public class EmployeeService {
 	
+	private EmployeeMapper mapper;
+
 	public EmployeeDTO selectOneEmpById(String empId) {
 		
 		SqlSession sqlSession = getSqlSession();
 		mapper = sqlSession.getMapper(EmployeeMapper.class);
 		
-		/* SqlSession과 함께 정보를 전달하여 조회한다. */
+		//SqlSession과 함께 정보를 전달하여 조회한다.
 		EmployeeDTO selectedEmp = mapper.selectEmpById(empId);
 		
-		/* sqlSession 닫기 */
 		sqlSession.close();
 		
 		return selectedEmp;
@@ -33,50 +33,25 @@ public class EmployeeService {
 		
 		List<EmployeeDTO> empList = mapper.selectAllEmpList();
 		
-		sqlSession.close();
-		
 		return empList;
 	}
 
-
 	public int insertEmp(EmployeeDTO emp) {
+		
 		
 		SqlSession sqlSession = getSqlSession();
 		mapper = sqlSession.getMapper(EmployeeMapper.class);
 		
 		int result = mapper.insertEmp(emp);
 		
-		/* insert, update, delete일 경우 트랜잭션 처리 */
 		if(result > 0) {
 			sqlSession.commit();
 		} else {
 			sqlSession.rollback();
 		}
 		
-		sqlSession.close();
-		
-		return result;
-		
-	}
-
-	public int deleteEmp(EmployeeDTO emp) {
-		
-		SqlSession sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(EmployeeMapper.class);
-		
-		int result = mapper.deleteEmp(emp);
-	
-		if(result > 0) {
-			sqlSession.commit();
-		} else {
-			sqlSession.rollback();
-		}
-		
-		sqlSession.close();
 		
 		return result;
 	}
-
-
 
 }
