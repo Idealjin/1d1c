@@ -5,9 +5,9 @@ from PIL import Image
 from PIL import ImageTk
 from tkinter import filedialog
 
-face_cascade_name = '../opencv/data/haarcascades/haarcascade_frontalface_alt.xml'
-eyes_cascade_name = '../opencv/data/haarcascades/haarcascade_eye_tree_eyeglasses.xml'
-file_name = 'image/marathon_01.jpg'
+face_cascade_name = 'datas/haarcascades/haarcascade_frontalface_alt.xml'
+eyes_cascade_name = 'datas/haarcascades/haarcascade_eye_tree_eyeglasses.xml'
+file_name = 'datas/image/marathon_01.jpg'
 title_name = 'Haar cascade object detection'
 frame_width = 500
 
